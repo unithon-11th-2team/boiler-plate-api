@@ -1,0 +1,27 @@
+# default profile
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+  # swagger issue
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+    open-in-view: false
+
+server:
+  port: 8080
+  tomcat:
+    connection-timeout: 30000
+    max-threads: 100
+    min-spare-threads: 50
+    accept-count: 50
+    uri-encoding: UTF-8
+  forward-headers-strategy: framework
