@@ -5,5 +5,5 @@ spring:
     username:
     password:
     hikari:
-      minimum-idle: 10
+      minimum-idle: 15
       maximum-pool-size: 20
