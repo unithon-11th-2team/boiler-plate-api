@@ -21,6 +21,8 @@ configurations {
     }
 }
 
+jar.enabled = false
+
 dependencies {
     // spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -46,12 +48,4 @@ dependencies {
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
-bootJar {
-    enabled = false
 }
