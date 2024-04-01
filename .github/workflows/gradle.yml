@@ -18,7 +18,7 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   PROJECT_NAME: core-api
-  S3_BUCKET_NAME: github-actions-s3-core-bucket
+  S3_BUCKET_NAME: github-core-deploy
   CODE_DEPLOY_APP_NAME: core-api
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: core-api-deployment
 
