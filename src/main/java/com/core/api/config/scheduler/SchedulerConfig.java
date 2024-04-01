@@ -1,4 +1,4 @@
-package com.boilerplate.api.config.scheduler;
+package com.core.api.config.scheduler;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

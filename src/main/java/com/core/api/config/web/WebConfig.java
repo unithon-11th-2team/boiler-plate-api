@@ -1,4 +1,4 @@
-package com.boilerplate.api.config.web;
+package com.core.api.config.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

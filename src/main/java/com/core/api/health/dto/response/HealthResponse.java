@@ -1,4 +1,4 @@
-package com.boilerplate.api.health.dto.response;
+package com.core.api.health.dto.response;
 
 import java.time.LocalDateTime;
 

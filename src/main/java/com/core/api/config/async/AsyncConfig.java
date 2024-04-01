@@ -1,4 +1,4 @@
-package com.boilerplate.api.config.async;
+package com.core.api.config.async;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

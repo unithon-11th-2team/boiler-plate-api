@@ -1,4 +1,4 @@
-package com.boilerplate.api.config.web;
+package com.core.api.config.web;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import lombok.RequiredArgsConstructor;

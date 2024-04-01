@@ -1,7 +1,7 @@
-package com.boilerplate.api.health.controller;
+package com.core.api.health.controller;
 
-import com.boilerplate.api.common.dto.ResponseDto;
-import com.boilerplate.api.health.dto.response.HealthResponse;
+import com.core.api.common.dto.ResponseDto;
+import com.core.api.health.dto.response.HealthResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package com.boilerplate.api.common.dto;
+package com.core.api.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
