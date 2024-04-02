@@ -1,5 +1,8 @@
-# default profile
 spring:
+  application:
+    name: core-api
+  lifecycle:
+    timeout-per-shutdown-phase: 5s
   servlet:
     multipart:
       enabled: true
@@ -12,6 +15,16 @@ spring:
     show-sql: true
     open-in-view: false
 
+logging:
+  level:
+    root: INFO
+
 server:
   port: 8080
   forward-headers-strategy: framework
+
+springdoc:
+  swagger-ui:
+    operations-sorter: alpha
+  model-and-view-allowed: true
+  packages-to-scan: com.core.api
