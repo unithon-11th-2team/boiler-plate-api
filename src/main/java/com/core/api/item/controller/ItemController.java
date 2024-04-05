@@ -10,10 +10,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Tag(name = "목탁 관리")
 @RestController
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemController {
     private final ItemService itemService;
 
-    @Operation(summary = "목탁 등록")
+    @Operation(summary = "목탁 던지기")
     @PostMapping("/")
     public ResponseEntity<ResponseDto<ItemSaveResponseDto>> itemSave(
             AuthUser user,
@@ -30,5 +30,16 @@ public class ItemController {
             ) {
         var request = itemService.itemSave(user, itemSaveDto);
         return ResponseDto.created(request);
+    }
+
+    @Operation(summary = "목탁 생성 확인")
+    @GetMapping("/")
+    public ResponseEntity<ResponseDto<List<ItemSaveResponseDto>>> itemSave(
+            AuthUser user,
+            BigDecimal latitude,
+            BigDecimal longitude
+    ) {
+        var request = itemService.itemList(latitude, longitude);
+        return ResponseDto.ok(request);
     }
 }
