@@ -28,3 +28,6 @@ springdoc:
     operations-sorter: alpha
   model-and-view-allowed: true
   packages-to-scan: com.core.api
+
+kakao:
+  token:

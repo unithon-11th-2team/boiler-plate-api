@@ -1,6 +1,7 @@
 package com.core.api.item.service;
 
 import com.core.api.auth.AuthUser;
+import com.core.api.client.AddressClient;
 import com.core.api.common.util.GeoUtils;
 import com.core.api.error.CommentLengthOutException;
 import com.core.api.error.ErrorType;
@@ -25,13 +26,18 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ItemService {
+    private final AddressClient addressClient;
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
     private final JPQLQueryFactory queryFactory;
     private final ItemCommentRepository itemCommentRepository;
 
     public ItemSaveResponseDto itemSave(AuthUser user, ItemSaveDto itemSaveDto) {
-        Item item = new Item(user.getId(), itemSaveDto);
+        String address = addressClient.search(itemSaveDto.getLatitude(), itemSaveDto.getLongitude())
+                .getDocuments().stream().findFirst()
+                .get().getRegion2depthName();
+        
+        Item item = new Item(user.getId(), itemSaveDto, address);
         var newItem = itemRepository.save(item);
         return new ItemSaveResponseDto(newItem);
     }
