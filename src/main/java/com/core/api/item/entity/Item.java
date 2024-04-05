@@ -42,4 +42,8 @@ public class Item extends BaseEntity {
     @Convert(converter = ItemTypeConverter.class)
     @Column(name = "type")
     private ItemType type;
+
+    public void upgrade(ItemType type) {
+        this.type = type;
+    }
 }
