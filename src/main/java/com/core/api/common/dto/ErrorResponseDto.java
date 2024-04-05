@@ -13,9 +13,16 @@ public class ErrorResponseDto implements Serializable {
     private final String reason;
 
     public static ErrorResponseDto of(BusinessException e) {
+        String message;
+        if (e.getCustomMessage() == null) {
+            message = e.getErrorType().getMessage();
+        } else {
+            message = e.getCustomMessage();
+        }
+
         return new ErrorResponseDto(
                 e.getErrorType().name(),
-                e.getCustomMessage()
+                message
         );
     }
 }

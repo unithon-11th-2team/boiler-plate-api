@@ -5,8 +5,13 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserSignResponse {
+public class UserInfoResponse {
+    /**
+     * user id
+     */
     private Long id;
+    /**
+     * nickname
+     */
     private String nickname;
-    private String token;
 }

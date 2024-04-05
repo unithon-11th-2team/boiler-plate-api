@@ -1,6 +1,8 @@
 package com.core.api.user.controller;
 
+import com.core.api.auth.AuthUser;
 import com.core.api.common.dto.ResponseDto;
+import com.core.api.user.dto.UserInfoResponse;
 import com.core.api.user.dto.UserSignRequest;
 import com.core.api.user.dto.UserSignResponse;
 import com.core.api.user.service.UserService;
@@ -26,7 +28,17 @@ public class UserController {
     public ResponseEntity<ResponseDto<UserSignResponse>> sign(
             @RequestBody UserSignRequest request
     ) {
-        var user = userService.sign(request);
-        return ResponseDto.created(user);
+        var response = userService.sign(request);
+        return ResponseDto.created(response);
+    }
+
+    /**
+     * 로그인 진행시, 닉네임 그리고 userId를 제공한다
+     */
+    @Operation(summary = "로그인")
+    @PostMapping("/login")
+    public ResponseEntity<ResponseDto<UserInfoResponse>> getUserInfo(AuthUser user) {
+        var response = new UserInfoResponse(user.getId(), user.getNickname());
+        return ResponseDto.ok(response);
     }
 }

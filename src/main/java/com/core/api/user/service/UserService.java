@@ -1,5 +1,6 @@
 package com.core.api.user.service;
 
+import com.core.api.error.AlreadyExistsException;
 import com.core.api.error.ErrorType;
 import com.core.api.error.NotFoundException;
 import com.core.api.user.dto.UserSignRequest;
@@ -20,9 +21,9 @@ public class UserService {
     @Transactional
     public UserSignResponse sign(UserSignRequest request) {
         if (userRepository.existsByNicknameOrDeviceId(request.getNickname(), request.getDeviceId())) {
-            throw new NotFoundException(ErrorType.ALREADY_EXISTS_USER_ERROR);
+            throw new AlreadyExistsException(ErrorType.ALREADY_EXISTS_USER_ERROR);
         }
-        
+
         var createdUser = userRepository.save(
                 User.builder()
                         .nickname(request.getNickname())
@@ -31,6 +32,15 @@ public class UserService {
                         .build()
         );
 
-        return new UserSignResponse(createdUser.getToken());
+        return new UserSignResponse(
+                createdUser.getId(),
+                createdUser.getNickname(),
+                createdUser.getToken()
+        );
+    }
+
+    public User findByToken(String token) {
+        return userRepository.findByToken(token)
+                .orElseThrow(() -> new NotFoundException(ErrorType.USER_NOT_FOUND_ERROR));
     }
 }
