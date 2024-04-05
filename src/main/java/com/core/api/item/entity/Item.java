@@ -1,6 +1,8 @@
 package com.core.api.item.entity;
 
 import com.core.api.common.entity.BaseEntity;
+import com.core.api.item.dto.request.ItemSaveDto;
+import com.core.api.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -21,7 +23,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Item extends BaseEntity {
+public class Item extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +44,14 @@ public class Item extends BaseEntity {
     @Convert(converter = ItemTypeConverter.class)
     @Column(name = "type")
     private ItemType type;
+
+    public Item(Long uid, ItemSaveDto itemSaveDto) {
+        this.uid = uid;
+        this.message = itemSaveDto.getMessage();
+        this.latitude = new BigDecimal(String.valueOf(itemSaveDto.getLatitude()));
+        this.longitude = new BigDecimal(String.valueOf(itemSaveDto.getLongitude()));
+        this.type = itemSaveDto.getType();
+    }
 
     public void upgrade(ItemType type) {
         this.type = type;
