@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "item")
 @Getter
@@ -26,10 +28,10 @@ public class Item extends BaseEntity {
     private String uid;
 
     @Column(name = "latitude")
-    private String latitude;
+    private BigDecimal latitude;
 
     @Column(name = "longitude")
-    private String longitude;
+    private BigDecimal longitude;
 
     @Convert(converter = ItemTypeConverter.class)
     @Column(name = "type")
