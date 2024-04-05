@@ -22,6 +22,14 @@ CREATE TABLE item_count (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     item_id BIGINT NOT NULL,
     uid BIGINT NOT NULL,
+    message VARCHAR(255) NOT NULL,
+    INDEX (item_id),
+    INDEX (user_id)
+);
+CREATE TABLE item_like (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    item_id BIGINT NOT NULL,
+    uid BIGINT NOT NULL,
     INDEX (item_id),
     INDEX (user_id)
 );
