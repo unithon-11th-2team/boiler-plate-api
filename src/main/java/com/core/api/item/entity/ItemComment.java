@@ -1,5 +1,6 @@
 package com.core.api.item.entity;
 
+import com.core.api.item.dto.request.CommentSaveDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +26,10 @@ public class ItemComment {
 
     @Column(name = "message")
     private String message;
+
+    public ItemComment(Long uid, CommentSaveDto commentSaverDto) {
+        this.uId = uid;
+        this.itemId = commentSaverDto.getItemId();
+        this.message = commentSaverDto.getMessage();
+    }
 }
