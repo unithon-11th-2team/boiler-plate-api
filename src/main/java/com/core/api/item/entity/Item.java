@@ -1,7 +1,6 @@
 package com.core.api.item.entity;
 
 import com.core.api.common.entity.BaseEntity;
-import com.core.api.item.ItemType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,8 +28,7 @@ public class Item extends BaseEntity {
     @Column(name = "longitude")
     private String longitude;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = ItemTypeConverter.class)
     @Column(name = "type")
     private ItemType type;
-
 }
