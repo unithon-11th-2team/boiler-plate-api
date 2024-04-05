@@ -1,7 +1,13 @@
 package com.core.api.item.entity;
 
 import com.core.api.common.entity.BaseEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,7 +31,7 @@ public class Item extends BaseEntity {
     private String message;
 
     @Column(name = "uid")
-    private String uid;
+    private Long uid;
 
     @Column(name = "latitude")
     private BigDecimal latitude;

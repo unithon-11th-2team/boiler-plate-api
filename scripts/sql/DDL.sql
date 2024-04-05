@@ -1,35 +1,47 @@
 CREATE DATABASE core CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-CREATE TABLE item (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    latitude DECIMAL(9,6) NOT NULL,
-    longitude DECIMAL(9,6) NOT NULL,
-    message VARCHAR(255) NOT NULL,
-    uid VARCHAR(255) NOT NULL,
-    type INT NOT NULL,
-    created_at DATETIME NOT NULL,
-    modified_at DATETIME NOT NULL
+
+-- auto-generated definition
+create table item
+(
+    latitude    decimal(38, 2) null,
+    longitude   decimal(38, 2) null,
+    type        int            null,
+    created_at  datetime(6)    null,
+    id          bigint auto_increment
+        primary key,
+    modified_at datetime(6)    null,
+    uid         bigint         null,
+    message     varchar(255)   null
 );
+
+-- auto-generated definition
+create table item_comment
+(
+    id      bigint auto_increment
+        primary key,
+    item_id bigint       null,
+    uid     bigint       null,
+    message varchar(255) null
+);
+
+-- auto-generated definition
+create table item_like
+(
+    id      bigint auto_increment
+        primary key,
+    item_id bigint null,
+    uid     bigint null
+);
+
+-- auto-generated definition
 create table user
 (
-    id          bigint auto_increment primary key,
-    created_at  datetime(6) null,
-    modified_at datetime(6) null,
-    device_id   varchar(512) null,
-    nickname    varchar(512) null,
-    token       varchar(512) null
+    created_at  datetime(6)  null,
+    id          bigint auto_increment
+        primary key,
+    modified_at datetime(6)  null,
+    device_id   varchar(255) null,
+    nickname    varchar(255) null,
+    token       varchar(255) null
 );
-CREATE TABLE item_count (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    item_id BIGINT NOT NULL,
-    uid BIGINT NOT NULL,
-    message VARCHAR(255) NOT NULL,
-    INDEX (item_id),
-    INDEX (user_id)
-);
-CREATE TABLE item_like (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    item_id BIGINT NOT NULL,
-    uid BIGINT NOT NULL,
-    INDEX (item_id),
-    INDEX (user_id)
-);
+
