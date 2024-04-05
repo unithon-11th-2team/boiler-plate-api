@@ -1,8 +1,8 @@
 CREATE DATABASE core CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 CREATE TABLE item (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    latitude VARCHAR(255) NOT NULL,
-    longitude VARCHAR(255) NOT NULL,
+    latitude DECIMAL(9,6) NOT NULL,
+    longitude DECIMAL(9,6) NOT NULL,
     message VARCHAR(255) NOT NULL,
     uid VARCHAR(255) NOT NULL,
     type INT NOT NULL,
