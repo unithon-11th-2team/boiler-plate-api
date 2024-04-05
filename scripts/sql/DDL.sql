@@ -3,7 +3,8 @@ CREATE TABLE item (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     latitude VARCHAR(255) NOT NULL,
     longitude VARCHAR(255) NOT NULL,
-    reason VARCHAR(255) NOT NULL,
+    message VARCHAR(255) NOT NULL,
+    uid VARCHAR(255) NOT NULL,
     type INT NOT NULL,
     created_at DATETIME NOT NULL,
     modified_at DATETIME NOT NULL

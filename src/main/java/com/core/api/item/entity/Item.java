@@ -19,8 +19,11 @@ public class Item extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "reason")
-    private String reason;
+    @Column(name = "message")
+    private String message;
+
+    @Column(name = "uid")
+    private String uid;
 
     @Column(name = "latitude")
     private String latitude;
