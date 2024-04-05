@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -55,5 +54,9 @@ public class ItemService {
         ItemComment itemComment = itemCommentRepository.save(new ItemComment(uid, commentSaveDto));
         User user = userRepository.findById(uid).orElseThrow(() -> new NotFoundException(ErrorType.USER_NOT_FOUND_ERROR));
         return new CommentSaveResponseDto(user, itemComment);
+    }
+
+    public void itemCommentDelete(Long id) {
+        itemCommentRepository.deleteById(id);
     }
 }

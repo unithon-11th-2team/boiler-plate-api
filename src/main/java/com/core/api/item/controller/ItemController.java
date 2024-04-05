@@ -54,4 +54,14 @@ public class ItemController {
         var request = itemService.itemComment(user.getId(), commentSaveDto);
         return ResponseDto.created(request);
     }
+
+    @Operation(summary = "목탁 댓글 삭제")
+    @DeleteMapping("/commentDelete")
+    public ResponseEntity<Void> itemCommentDelete(
+            AuthUser user,
+            Long commentId
+            ) {
+        itemService.itemCommentDelete(commentId);
+        return ResponseDto.noContent();
+    }
 }
