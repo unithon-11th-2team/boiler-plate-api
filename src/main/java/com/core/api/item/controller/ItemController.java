@@ -31,6 +31,17 @@ public class ItemController {
     private final ItemService itemService;
     private final ItemFacade itemFacade;
 
+    /**
+     * **Request**
+     * ```
+     * {
+     *  "message": "극락",
+     *  "latitude": 127.1086228,
+     *  "longitude": 37.4012191,
+     *  "type": "TYPE1"
+     * }
+     * ```
+     */
     @Operation(summary = "목탁 생성")
     @PostMapping
     public ResponseEntity<ResponseDto<ItemSaveResponseDto>> itemSave(
@@ -74,6 +85,7 @@ public class ItemController {
         itemFacade.delete(user, id);
         return ResponseDto.noContent();
     }
+
     @Operation(summary = "목탁 상세 조회")
     @GetMapping("/item-detail")
     public ResponseEntity<ResponseDto<Object>> itemDetail(
@@ -83,7 +95,6 @@ public class ItemController {
         var response = itemService.itemDetail(user.getId(), itemId);
         return ResponseDto.ok(response);
     }
-
 
 
 }
