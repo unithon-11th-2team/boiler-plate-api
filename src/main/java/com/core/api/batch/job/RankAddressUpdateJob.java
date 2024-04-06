@@ -41,9 +41,10 @@ public class RankAddressUpdateJob {
                             BigDecimal latitude = firstItem.getLatitude();
                             BigDecimal longitude = firstItem.getLongitude();
 
-                            int score = (itemList.stream()
-                                    .mapToInt(item -> (int) calculateScore(item.getType()))
-                                    .sum()) / itemList.size();
+                            int score = (int) Math.ceil(
+                                    (double) (itemList.stream()
+                                            .mapToInt(item -> (int) calculateScore(item.getType()))
+                                            .sum() + itemList.size()) / itemList.size());
 
                             return RankAddress.builder()
                                     .address(address)
@@ -65,9 +66,9 @@ public class RankAddressUpdateJob {
         else if (type == ItemType.TYPE2)
             return 4;
         else if (type == ItemType.TYPE3)
-            return 3;
+            return 5;
         else if (type == ItemType.TYPE4)
-            return 2;
+            return 4;
         else
             return 1;
     }
