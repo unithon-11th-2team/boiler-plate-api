@@ -27,10 +27,10 @@ public class ItemLike {
     private Long itemId;
 
     @Column(name = "uid")
-    private Long uId;
+    private Long uid;
 
     public ItemLike(Long uId, Long itemId) {
         this.itemId = itemId;
-        this.uId = uId;
+        this.uid = uId;
     }
 }

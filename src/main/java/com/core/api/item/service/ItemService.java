@@ -8,16 +8,22 @@ import com.core.api.error.ErrorType;
 import com.core.api.error.NotFoundException;
 import com.core.api.item.dto.request.CommentSaveDto;
 import com.core.api.item.dto.request.ItemSaveDto;
-import com.core.api.item.dto.response.*;
-import com.core.api.item.entity.*;
+import com.core.api.item.dto.response.CommentSaveResponseDto;
+import com.core.api.item.dto.response.ItemDetailCommentDto;
+import com.core.api.item.dto.response.ItemDetailResponseDto;
+import com.core.api.item.dto.response.ItemSaveResponseDto;
+import com.core.api.item.dto.response.MyItemResponse;
+import com.core.api.item.entity.Item;
+import com.core.api.item.entity.ItemComment;
+import com.core.api.item.entity.ItemCommentLike;
+import com.core.api.item.entity.ItemLike;
+import com.core.api.item.entity.QItem;
 import com.core.api.item.repository.ItemCommentLikeRepository;
 import com.core.api.item.repository.ItemCommentRepository;
 import com.core.api.item.repository.ItemLikeRepository;
 import com.core.api.item.repository.ItemRepository;
-import com.core.api.user.entity.QUser;
 import com.core.api.user.entity.User;
 import com.core.api.user.repository.UserRepository;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -28,7 +34,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static com.core.api.item.entity.QItem.item;
 import static com.core.api.item.entity.QItemComment.itemComment;
 import static com.core.api.item.entity.QItemCommentLike.itemCommentLike;
 import static com.core.api.item.entity.QItemLike.itemLike;
@@ -93,18 +98,18 @@ public class ItemService {
     @Transactional
     public void itemCommentDelete(Long id, Long userId) {
         jpaQueryFactory.delete(itemComment)
-                .where(itemComment.itemId.eq(id).and(itemComment.uId.eq(userId)))
+                .where(itemComment.itemId.eq(id).and(itemComment.uid.eq(userId)))
                 .execute();
     }
 
-    public void itemLike(Long uId, Long itemId) {
-        itemLikeRepository.save(new ItemLike(uId, itemId));
+    public void itemLike(Long uid, Long itemId) {
+        itemLikeRepository.save(new ItemLike(uid, itemId));
     }
 
     @Transactional
     public void itemLikeCancel(Long uId, Long itemId) {
         queryFactory.delete(itemLike)
-                .where(itemLike.uId.eq(uId).and(itemLike.itemId.eq(itemId)))
+                .where(itemLike.uid.eq(uId).and(itemLike.itemId.eq(itemId)))
                 .execute();
     }
 
@@ -133,12 +138,12 @@ public class ItemService {
 
         List<ItemDetailCommentDto> itemCommentList = jpaQueryFactory
                 .select(Projections.constructor(ItemDetailCommentDto.class,
-                        itemComment.uId,
+                        itemComment.uid,
                         user.nickname,
                         itemComment.message,
                         itemCommentLike.count().as("likeCount")))
                 .from(itemComment)
-                .leftJoin(user).on(itemComment.uId.eq(user.id))
+                .leftJoin(user).on(itemComment.uid.eq(user.id))
                 .leftJoin(itemCommentLike).on(itemCommentLike.itemCommentId.eq(itemComment.id))
                 .where(itemComment.itemId.eq(itemId))
                 .groupBy(itemComment.id, user.id)

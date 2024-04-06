@@ -22,13 +22,13 @@ public class ItemComment {
     private Long itemId;
 
     @Column(name = "uid")
-    private Long uId;
+    private Long uid;
 
     @Column(name = "message")
     private String message;
 
     public ItemComment(Long uid, CommentSaveDto commentSaverDto) {
-        this.uId = uid;
+        this.uid = uid;
         this.itemId = commentSaverDto.getItemId();
         this.message = commentSaverDto.getMessage();
     }
