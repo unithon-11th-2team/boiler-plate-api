@@ -24,6 +24,7 @@ import com.core.api.item.repository.ItemLikeRepository;
 import com.core.api.item.repository.ItemRepository;
 import com.core.api.user.entity.User;
 import com.core.api.user.repository.UserRepository;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -138,10 +139,13 @@ public class ItemService {
 
     public ItemDetailResponseDto itemDetail(Long uId, Long itemId) {
 
-        Item item = jpaQueryFactory.select(QItem.item)
+        Tuple tuple = jpaQueryFactory.select(QItem.item, user)
                 .from(QItem.item)
                 .where(QItem.item.id.eq(itemId))
+                .leftJoin(user).on(QItem.item.uid.eq(user.id))
                 .fetchFirst();
+        Item item = tuple.get(QItem.item);
+        User use1 = tuple.get(user);
 
         List<ItemDetailCommentDto> itemCommentList = jpaQueryFactory
                 .select(Projections.constructor(ItemDetailCommentDto.class,
@@ -158,7 +162,7 @@ public class ItemService {
 
         Long likeCounts = itemLikeRepository.countByItemId(item.getId());
 
-        return new ItemDetailResponseDto(item, itemCommentList, likeCounts);
+        return new ItemDetailResponseDto(item, itemCommentList, likeCounts, use1);
     }
 
     public Integer itemCommentLike(Long id, Long itemCommentId) {

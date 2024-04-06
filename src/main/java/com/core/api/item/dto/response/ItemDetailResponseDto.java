@@ -2,6 +2,7 @@ package com.core.api.item.dto.response;
 
 import com.core.api.item.entity.Item;
 import com.core.api.item.entity.enums.ItemType;
+import com.core.api.user.entity.User;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.List;
 public class ItemDetailResponseDto {
     private Long itemId;
     private Long uid;
+    private String nickname;
     private ItemType type;
     private ItemType currentType;
     private String message;
@@ -25,8 +27,8 @@ public class ItemDetailResponseDto {
     public ItemDetailResponseDto(
             Item item,
             List<ItemDetailCommentDto> itemCommentList,
-            Long likeCounts
-    ) {
+            Long likeCounts,
+            User use1) {
         this.itemId = item.getId();
         this.uid = item.getUid();
         this.type = item.getType();
@@ -38,5 +40,6 @@ public class ItemDetailResponseDto {
         this.commentList = itemCommentList;
         this.createdAt = item.getCreatedAt();
         this.likeCounts = likeCounts;
+        this.nickname = use1.getNickname();
     }
 }
