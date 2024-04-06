@@ -3,6 +3,7 @@ package com.core.api.item.controller;
 import com.core.api.auth.AuthUser;
 import com.core.api.common.dto.ResponseDto;
 import com.core.api.item.dto.request.ItemSaveDto;
+import com.core.api.item.dto.response.ItemDetailResponseDto;
 import com.core.api.item.dto.response.ItemSaveResponseDto;
 import com.core.api.item.dto.response.MyItemResponse;
 import com.core.api.item.service.ItemFacade;
@@ -35,13 +36,13 @@ public class ItemController {
      * **Request**
      * ```
      * {
-     *  "message": "극락",
-     *  "latitude": 127.1086228,
-     *  "longitude": 37.4012191,
-     *  "type": "TYPE1"
+     * "message": "극락",
+     * "latitude": 127.1086228,
+     * "longitude": 37.4012191,
+     * "type": "TYPE1"
      * }
      * ```
-     *
+     * <p>
      * *type**
      * (나락)TYPE1 ~ TYPE5(극락)
      */
@@ -91,7 +92,7 @@ public class ItemController {
 
     @Operation(summary = "목탁 상세 조회")
     @GetMapping("/item-detail")
-    public ResponseEntity<ResponseDto<Object>> itemDetail(
+    public ResponseEntity<ResponseDto<ItemDetailResponseDto>> itemDetail(
             AuthUser user,
             Long itemId
     ) {
