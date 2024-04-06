@@ -20,6 +20,7 @@ public class MyItemResponse {
     private BigDecimal longitude;
     private String address;
     private ItemType type;
+    private ItemType currentType;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
@@ -32,6 +33,7 @@ public class MyItemResponse {
                 .longitude(item.getLongitude())
                 .address(item.getAddress())
                 .type(item.getType())
+                .currentType(item.getCurrentType())
                 .createdAt(item.getCreatedAt())
                 .modifiedAt(item.getModifiedAt())
                 .build();
