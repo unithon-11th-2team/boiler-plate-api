@@ -51,6 +51,9 @@ public class ItemService {
     private final ItemCommentLikeRepository itemCommentLikeRepository;
     private final JPAQueryFactory jpaQueryFactory;
 
+    /** 해당 길이를 통해 위치 정보 범위 변경 */
+    public final static int ADDRESS_RANGE = 5000;
+
     @Transactional
     public ItemSaveResponseDto itemSave(AuthUser user, ItemSaveDto itemSaveDto) {
         var address = addressClient.search(itemSaveDto.getLatitude(), itemSaveDto.getLongitude())
@@ -81,7 +84,7 @@ public class ItemService {
         double lon = longitude.doubleValue();
 
         return allItems.stream()
-                .filter(item -> GeoUtils.calculateDistance(lat, lon, item.getLatitude().doubleValue(), item.getLongitude().doubleValue()) <= 5000)
+                .filter(item -> GeoUtils.calculateDistance(lat, lon, item.getLatitude().doubleValue(), item.getLongitude().doubleValue()) <= ADDRESS_RANGE)
                 .map(ItemSaveResponseDto::new)
                 .toList();
     }
