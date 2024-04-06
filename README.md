@@ -1,3 +1,13 @@
 # core-api
+
+------------
+
+## 프로젝트 상세정보
+
+<a href="https://unit-center.notion.site/UNITHON-11TH-Dashboard-09a4365e16dd4629a046df4d6e9daeb1">유니톤 11기 상세정보</a>
+
 > core-api
 
+* 아키텍처 구조
+
+<img width="100%" alt="architecture" src="https://private-user-images.githubusercontent.com/91363333/320228195-3b8c2aee-a4da-43cb-aa21-2ad6b2b02e38.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTI0Mjk0MzcsIm5iZiI6MTcxMjQyOTEzNywicGF0aCI6Ii85MTM2MzMzMy8zMjAyMjgxOTUtM2I4YzJhZWUtYTRkYS00M2NiLWFhMjEtMmFkNmIyYjAyZTM4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MDYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDA2VDE4NDUzN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTViMjBhNDRmMzNhOTljMzcwNWZhOWU1NDdkNjJlOGQ5MDQzMWNiYTM0Y2ZjYzVmNGJlNzhmNGQ0ZjZjYzVlZGQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.MiEfCIji3thOKHRw2wY9iwE9f8sq36tkQNEW9jAMnSw" style="max-width: 100%;">
