@@ -50,8 +50,9 @@ jobs:
           spring.datasource.url: ${{ secrets.CORE_DATABASE_URL }}
           spring.datasource.username: ${{ secrets.CORE_DATABASE_USERNAME }}
           spring.datasource.password: ${{ secrets.CORE_DATABASE_PASSWORD }}
-#          cloud.aws.credentials.accessKey: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          cloud.aws.credentials.secretKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          kakao.token: ${{ secrets.KAKAO_TOKEN }}
+      #          cloud.aws.credentials.accessKey: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #          cloud.aws.credentials.secretKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       # gradlew 파일 실행권한 설정
       - name: Grant execute permission for gradlew
