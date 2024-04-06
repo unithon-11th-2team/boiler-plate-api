@@ -55,7 +55,7 @@ public class ItemController {
         return ResponseDto.created(response);
     }
 
-    @Operation(summary = "특정 범위안에 있는 목탁 조회 500미터")
+    @Operation(summary = "특정 범위안에 있는 목탁 조회 5000미터")
     @GetMapping
     public ResponseEntity<ResponseDto<List<ItemSaveResponseDto>>> itemList(
             AuthUser user,
