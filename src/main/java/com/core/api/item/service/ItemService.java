@@ -139,13 +139,14 @@ public class ItemService {
 
     public ItemDetailResponseDto itemDetail(Long uId, Long itemId) {
 
-        Tuple tuple = jpaQueryFactory.select(QItem.item, user)
+        Item item = jpaQueryFactory.select(QItem.item)
                 .from(QItem.item)
                 .where(QItem.item.id.eq(itemId))
-                .leftJoin(user).on(QItem.item.uid.eq(user.id))
                 .fetchFirst();
-        Item item = tuple.get(QItem.item);
-        User use1 = tuple.get(user);
+
+        User use1 = jpaQueryFactory.selectFrom(user)
+                .where(user.id.eq(item.getUid()))
+                .fetchFirst();
 
         List<ItemDetailCommentDto> itemCommentList = jpaQueryFactory
                 .select(Projections.constructor(ItemDetailCommentDto.class,
