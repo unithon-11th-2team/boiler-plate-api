@@ -21,4 +21,11 @@ public class ItemScheduler {
         itemTypeUpdateJob.run();
         log.info("item type upgrade end");
     }
+
+    @Scheduled(fixedRate = 600000)
+    public void runItemRank() {
+        log.info("item rank update start");
+        itemTypeUpdateJob.rankRun();
+        log.info("item rank update end");
+    }
 }
