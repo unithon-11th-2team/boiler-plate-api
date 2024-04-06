@@ -26,7 +26,7 @@ import java.util.List;
 public class ItemController {
     private final ItemService itemService;
 
-    @Operation(summary = "목탁 던지기")
+    @Operation(summary = "목탁 생성")
     @PostMapping
     public ResponseEntity<ResponseDto<ItemSaveResponseDto>> itemSave(
             AuthUser user,
@@ -36,7 +36,7 @@ public class ItemController {
         return ResponseDto.created(request);
     }
 
-    @Operation(summary = "목탁 생성 확인")
+    @Operation(summary = "특정 범위안에 있는 목탁 조회")
     @GetMapping
     public ResponseEntity<ResponseDto<List<ItemSaveResponseDto>>> itemList(
             AuthUser user,
