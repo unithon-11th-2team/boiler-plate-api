@@ -1,6 +1,7 @@
 package com.core.api.item.controller;
 
 import com.core.api.common.dto.ResponseDto;
+import com.core.api.item.dto.request.ItemModifyDevDto;
 import com.core.api.item.dto.response.ItemCommentDevResponse;
 import com.core.api.item.dto.response.ItemDevResponse;
 import com.core.api.item.dto.response.ItemLikeDevResponse;
@@ -10,10 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -64,5 +62,14 @@ public class ItemDevController {
     ) {
         var response = itemDevService.getAllItemLikes(ids);
         return ResponseDto.ok(response);
+    }
+
+    @Operation(summary = "목탁 위치 수정")
+    @GetMapping("/api/v1/dev/item-location")
+    public ResponseEntity<Void> modifyItemLocation(
+            @RequestBody ItemModifyDevDto itemModifyDevDto
+    ) {
+        itemDevService.modifyItemLocation(itemModifyDevDto);
+        return ResponseDto.noContent();
     }
 }

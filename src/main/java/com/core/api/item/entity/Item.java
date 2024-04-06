@@ -74,4 +74,10 @@ public class Item extends BaseEntity {
     public void upgrade(ItemType type) {
         this.currentType = type;
     }
+
+    public void modifyLocation(String addressName, BigDecimal latitude, BigDecimal longitude) {
+        this.address = addressName;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }
