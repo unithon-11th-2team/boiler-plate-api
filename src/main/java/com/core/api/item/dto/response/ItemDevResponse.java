@@ -1,7 +1,7 @@
 package com.core.api.item.dto.response;
 
 import com.core.api.item.entity.Item;
-import com.core.api.item.entity.ItemType;
+import com.core.api.item.entity.enums.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

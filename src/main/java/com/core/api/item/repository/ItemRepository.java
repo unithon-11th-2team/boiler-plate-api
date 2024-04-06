@@ -1,7 +1,7 @@
 package com.core.api.item.repository;
 
 import com.core.api.item.entity.Item;
-import com.core.api.item.entity.ItemType;
+import com.core.api.item.entity.enums.ItemType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.core.api.item.dto.request;
 
-import com.core.api.item.entity.ItemType;
+import com.core.api.item.entity.enums.ItemType;
 import lombok.Data;
 
 import java.math.BigDecimal;

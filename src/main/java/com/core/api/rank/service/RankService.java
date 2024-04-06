@@ -1,6 +1,6 @@
 package com.core.api.rank.service;
 
-import com.core.api.item.entity.ItemType;
+import com.core.api.item.entity.enums.ItemType;
 import com.core.api.rank.dto.RankDto;
 import com.core.api.rank.entity.RankAddress;
 import com.querydsl.core.types.dsl.BooleanExpression;

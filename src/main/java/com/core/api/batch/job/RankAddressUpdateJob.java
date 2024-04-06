@@ -1,7 +1,7 @@
 package com.core.api.batch.job;
 
 import com.core.api.item.entity.Item;
-import com.core.api.item.entity.ItemType;
+import com.core.api.item.entity.enums.ItemType;
 import com.core.api.rank.entity.RankAddress;
 import com.core.api.rank.repository.RankAddressRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;

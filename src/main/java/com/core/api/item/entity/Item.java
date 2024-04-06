@@ -2,6 +2,8 @@ package com.core.api.item.entity;
 
 import com.core.api.common.entity.BaseEntity;
 import com.core.api.item.dto.request.ItemSaveDto;
+import com.core.api.item.entity.enums.ItemType;
+import com.core.api.item.entity.enums.ItemTypeConverter;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;

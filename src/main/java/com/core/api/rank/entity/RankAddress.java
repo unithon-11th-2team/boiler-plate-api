@@ -1,7 +1,7 @@
 package com.core.api.rank.entity;
 
-import com.core.api.item.entity.ItemType;
-import com.core.api.item.entity.ItemTypeConverter;
+import com.core.api.item.entity.enums.ItemType;
+import com.core.api.item.entity.enums.ItemTypeConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

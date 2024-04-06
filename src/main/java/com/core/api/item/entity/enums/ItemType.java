@@ -1,4 +1,4 @@
-package com.core.api.item.entity;
+package com.core.api.item.entity.enums;
 
 /** 나락 -> 극락 */
 public enum ItemType {

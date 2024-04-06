@@ -1,11 +1,9 @@
 package com.core.api.batch.job;
 
-import com.core.api.item.entity.ItemType;
+import com.core.api.item.entity.enums.ItemType;
 import com.core.api.item.repository.ItemCommentRepository;
 import com.core.api.item.repository.ItemLikeRepository;
 import com.core.api.item.repository.ItemRepository;
-import com.core.api.rank.repository.RankAddressRepository;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

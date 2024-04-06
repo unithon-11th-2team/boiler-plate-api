@@ -1,4 +1,4 @@
-package com.core.api.item.entity;
+package com.core.api.item.entity.enums;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
