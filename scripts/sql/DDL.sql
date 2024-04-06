@@ -4,8 +4,8 @@ DATABASE core CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 -- auto-generated definition
 create table item
 (
-    latitude    decimal(38, 2) null,
-    longitude   decimal(38, 2) null,
+    latitude    decimal(38, 10) null,
+    longitude   decimal(38, 10) null,
     type        int null,
     created_at  datetime(6) null,
     id          bigint auto_increment
