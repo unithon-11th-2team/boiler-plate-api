@@ -32,8 +32,8 @@ public class AddressClient {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("https://dapi.kakao.com/v2/local/geo/coord2regioncode.json")
-                .queryParam("x", latitude)
-                .queryParam("y", longitude);
+                .queryParam("x", longitude)
+                .queryParam("y", latitude);
 
         // GET 요청 수행
         return restTemplate.exchange(
