@@ -51,7 +51,9 @@ public class ItemService {
     private final ItemCommentLikeRepository itemCommentLikeRepository;
     private final JPAQueryFactory jpaQueryFactory;
 
-    /** 해당 길이를 통해 위치 정보 범위 변경 */
+    /**
+     * 해당 길이를 통해 위치 정보 범위 변경
+     */
     public final static int ADDRESS_RANGE = 5000;
 
     @Transactional
@@ -64,7 +66,8 @@ public class ItemService {
                 .message(itemSaveDto.getMessage())
                 .latitude(itemSaveDto.getLatitude())
                 .longitude(itemSaveDto.getLongitude())
-                .type(itemSaveDto.getType());
+                .type(itemSaveDto.getType())
+                .currentType(itemSaveDto.getType());
 
         if (address.isPresent()) {
             var add = address.get();

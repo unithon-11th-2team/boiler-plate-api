@@ -58,6 +58,10 @@ public class Item extends BaseEntity {
     @Column(name = "type")
     private ItemType type;
 
+    @Convert(converter = ItemTypeConverter.class)
+    @Column(name = "current_type")
+    private ItemType currentType;
+
     public Item(Long uid, ItemSaveDto itemSaveDto, String address) {
         this.uid = uid;
         this.message = itemSaveDto.getMessage();
@@ -68,6 +72,6 @@ public class Item extends BaseEntity {
     }
 
     public void upgrade(ItemType type) {
-        this.type = type;
+        this.currentType = type;
     }
 }
