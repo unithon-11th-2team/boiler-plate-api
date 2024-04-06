@@ -81,7 +81,7 @@ public class ItemService {
         double lon = longitude.doubleValue();
 
         return allItems.stream()
-                .filter(item -> GeoUtils.calculateDistance(lat, lon, item.getLatitude().doubleValue(), item.getLongitude().doubleValue()) <= 100)
+                .filter(item -> GeoUtils.calculateDistance(lat, lon, item.getLatitude().doubleValue(), item.getLongitude().doubleValue()) <= 500)
                 .map(ItemSaveResponseDto::new)
                 .toList();
     }
