@@ -45,14 +45,27 @@ public class ItemService {
     private final ItemCommentLikeRepository itemCommentLikeRepository;
     private final JPAQueryFactory jpaQueryFactory;
 
-
+    @Transactional
     public ItemSaveResponseDto itemSave(AuthUser user, ItemSaveDto itemSaveDto) {
-        String address = addressClient.search(itemSaveDto.getLatitude(), itemSaveDto.getLongitude())
-                .getDocuments().stream().findFirst()
-                .get().getRegion2depthName();
+        var address = addressClient.search(itemSaveDto.getLatitude(), itemSaveDto.getLongitude())
+                .getDocuments().stream().findFirst();
 
-        Item item = new Item(user.getId(), itemSaveDto, address);
-        var newItem = itemRepository.save(item);
+        var item = Item.builder()
+                .uid(user.getId())
+                .message(itemSaveDto.getMessage())
+                .latitude(itemSaveDto.getLatitude())
+                .longitude(itemSaveDto.getLongitude())
+                .type(itemSaveDto.getType());
+
+        if (address.isPresent()) {
+            var add = address.get();
+            item.address(add.getAddressName())
+                    .region1depthName(add.getRegion1depthName())
+                    .region2depthName(add.getRegion2depthName())
+                    .region3depthName(add.getRegion3depthName());
+        }
+
+        var newItem = itemRepository.save(item.build());
         return new ItemSaveResponseDto(newItem);
     }
 

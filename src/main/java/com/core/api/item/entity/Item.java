@@ -43,6 +43,15 @@ public class Item extends BaseEntity {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "region_1depth_name")
+    private String region1depthName;
+
+    @Column(name = "region_2depth_name")
+    private String region2depthName;
+
+    @Column(name = "region_3depth_name")
+    private String region3depthName;
+
     @Convert(converter = ItemTypeConverter.class)
     @Column(name = "type")
     private ItemType type;

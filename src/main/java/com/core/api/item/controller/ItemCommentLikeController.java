@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "목탁 댓글 좋아요")
 @RestController
-@RequestMapping(path = "/api/v1/item-comment-like", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/v1/comment-likes", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class ItemCommentLikeController {
     private final ItemService itemService;
