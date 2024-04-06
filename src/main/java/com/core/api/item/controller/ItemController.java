@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
@@ -60,8 +61,8 @@ public class ItemController {
     @GetMapping
     public ResponseEntity<ResponseDto<List<ItemSaveResponseDto>>> itemList(
             AuthUser user,
-            BigDecimal latitude,
-            BigDecimal longitude
+            @RequestParam BigDecimal latitude,
+            @RequestParam BigDecimal longitude
     ) {
         var response = itemService.itemList(user.getId(), latitude, longitude);
         return ResponseDto.ok(response);
@@ -94,11 +95,9 @@ public class ItemController {
     @GetMapping("/item-detail")
     public ResponseEntity<ResponseDto<ItemDetailResponseDto>> itemDetail(
             AuthUser user,
-            Long itemId
+            @RequestParam Long itemId
     ) {
         var response = itemService.itemDetail(user.getId(), itemId);
         return ResponseDto.ok(response);
     }
-
-
 }
