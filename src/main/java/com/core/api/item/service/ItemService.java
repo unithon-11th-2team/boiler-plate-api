@@ -92,7 +92,7 @@ public class ItemService {
     }
 
     public List<MyItemResponse> getAllMyItems(AuthUser user) {
-        return itemRepository.findAllByUid(user.getId())
+        return itemRepository.findAllByUidOrderByCreatedAtDesc(user.getId())
                 .stream()
                 .map(MyItemResponse::from)
                 .toList();

@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findAllByTypeIn(List<ItemType> type);
 
-    List<Item> findAllByUid(Long uid);
+    List<Item> findAllByUidOrderByCreatedAtDesc(Long uid);
 
     List<Item> findAllByIdIn(List<Long> id);
 
