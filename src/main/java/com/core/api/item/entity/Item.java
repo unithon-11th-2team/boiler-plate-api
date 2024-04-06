@@ -30,28 +30,28 @@ public class Item extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "message")
+    @Column(name = "message", columnDefinition = "varchar(512)")
     private String message;
 
     @Column(name = "uid")
     private Long uid;
 
-    @Column(name = "latitude")
+    @Column(name = "latitude", columnDefinition = "decimal(38,10)")
     private BigDecimal latitude;
 
-    @Column(name = "longitude")
+    @Column(name = "longitude", columnDefinition = "decimal(38,10)")
     private BigDecimal longitude;
 
-    @Column(name = "address")
+    @Column(name = "address", columnDefinition = "varchar(512)")
     private String address;
 
-    @Column(name = "region_1depth_name")
+    @Column(name = "region_1depth_name", columnDefinition = "varchar(512)")
     private String region1depthName;
 
-    @Column(name = "region_2depth_name")
+    @Column(name = "region_2depth_name", columnDefinition = "varchar(512)")
     private String region2depthName;
 
-    @Column(name = "region_3depth_name")
+    @Column(name = "region_3depth_name", columnDefinition = "varchar(512)")
     private String region3depthName;
 
     @Convert(converter = ItemTypeConverter.class)

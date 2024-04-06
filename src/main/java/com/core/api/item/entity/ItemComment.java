@@ -1,7 +1,12 @@
 package com.core.api.item.entity;
 
 import com.core.api.item.dto.request.CommentSaveDto;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +29,7 @@ public class ItemComment {
     @Column(name = "uid")
     private Long uid;
 
-    @Column(name = "message")
+    @Column(name = "message", columnDefinition = "varchar(512)")
     private String message;
 
     public ItemComment(Long uid, CommentSaveDto commentSaverDto) {

@@ -23,11 +23,12 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nickname", columnDefinition = "varchar(512)")
     private String nickname;
 
-    @Column(name = "device_id")
+    @Column(name = "device_id", columnDefinition = "varchar(512)")
     private String deviceId;
 
-    @Column(name = "token")
+    @Column(name = "token", columnDefinition = "varchar(512)")
     private String token;
 }
