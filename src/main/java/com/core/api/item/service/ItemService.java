@@ -18,6 +18,7 @@ import com.core.api.user.entity.QUser;
 import com.core.api.user.entity.User;
 import com.core.api.user.repository.UserRepository;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.transaction.Transactional;
@@ -130,22 +131,20 @@ public class ItemService {
                 .where(QItem.item.id.eq(itemId))
                 .fetchFirst();
 
-        List<Tuple> itemContentList = jpaQueryFactory.select(itemComment, user)
+        List<ItemDetailCommentDto> itemCommentList = jpaQueryFactory
+                .select(Projections.constructor(ItemDetailCommentDto.class,
+                        itemComment.uId,
+                        user.nickname,
+                        itemComment.message,
+                        itemCommentLike.count().as("likeCount")))
                 .from(itemComment)
-                .leftJoin(itemComment).on(itemComment.uId.eq(user.id))
+                .leftJoin(user).on(itemComment.uId.eq(user.id))
+                .leftJoin(itemCommentLike).on(itemCommentLike.itemCommentId.eq(itemComment.id))
                 .where(itemComment.itemId.eq(itemId))
+                .groupBy(itemComment.id, user.id)
                 .fetch();
 
-        List<Tuple> itemLikeList = jpaQueryFactory.select(itemLike, user)
-                .from(itemLike)
-                .leftJoin(itemLike).on(itemLike.uId.eq(user.id))
-                .where(itemLike.itemId.eq(itemId))
-                .fetch();
-
-        ItemDetailResponseDto itemDetailResponseDto = new ItemDetailResponseDto();
-
-
-        return null;
+        return new ItemDetailResponseDto(item, itemCommentList);
     }
 
     public Integer itemCommentLike(Long id, Long itemCommentId) {
