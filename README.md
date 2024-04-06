@@ -1,7 +1,12 @@
 ## 😉 프로젝트 소개
 
 <hr>
-<img src="https://github.com/unithon-11th-2team/.github/assets/50691225/3113951a-1197-45f4-9b19-8714853cfebe"/>
+
+<img src="https://github.com/unithon-11th-2team/.github/assets/50691225/22bb4aa2-5914-47ec-bbff-78b59f274fb3"/>
+
+
+
+
 
 ```
 화나거나 우울했던 하루, 누군가의 공감 위로가 필요할 때가 있어요.
@@ -15,6 +20,11 @@
 [//]: # (<hr>)
 
 [//]: # (발표 ppt 내용 보고 추가 예정)
+
+---
+
+<img src="https://github.com/unithon-11th-2team/.github/assets/50691225/3113951a-1197-45f4-9b19-8714853cfebe"/>
+
 
 ## 🌏 Infra Architecture
 
