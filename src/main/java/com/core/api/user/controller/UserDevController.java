@@ -30,7 +30,7 @@ public class UserDevController {
     @Operation(summary = "유저 정보 전체 조회")
     @GetMapping
     public ResponseEntity<ResponseDto<List<UserInfoDevResponse>>> getAll(
-            @RequestParam List<Long> ids
+            @RequestParam(required = false) List<Long> ids
     ) {
         var response = userDevService.getAll(ids);
         return ResponseDto.ok(response);

@@ -15,7 +15,9 @@ public class UserDevService {
     private final UserRepository userRepository;
 
     public List<UserInfoDevResponse> getAll(List<Long> ids) {
-        List<User> users = ids.isEmpty() ? userRepository.findAll() : userRepository.findAllByIdIn(ids);
+        var isEmptyOrNull = ids == null || ids.isEmpty();
+
+        List<User> users = isEmptyOrNull ? userRepository.findAll() : userRepository.findAllByIdIn(ids);
 
         return users
                 .stream()

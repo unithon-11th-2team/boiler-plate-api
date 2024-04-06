@@ -30,7 +30,7 @@ public class ItemDevController {
     @Operation(summary = "목탁 정보 전체 조회")
     @GetMapping
     public ResponseEntity<ResponseDto<List<ItemDevResponse>>> getAll(
-            @RequestParam List<Long> ids
+            @RequestParam(required = false) List<Long> ids
     ) {
         var response = itemDevService.getAll(ids);
         return ResponseDto.ok(response);

@@ -15,7 +15,8 @@ public class ItemDevService {
     private final ItemRepository itemRepository;
 
     public List<ItemDevResponse> getAll(List<Long> ids) {
-        List<Item> items = ids.isEmpty() ? itemRepository.findAll() : itemRepository.findAllByIdIn(ids);
+        var isEmptyOrNull = ids == null || ids.isEmpty();
+        List<Item> items = isEmptyOrNull ? itemRepository.findAll() : itemRepository.findAllByIdIn(ids);
 
         return items
                 .stream()
