@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "목탁 관련 개발 전용 API, (테스트 및 개발 편의 용도로 사용")
+@Tag(name = "목탁 관련 개발 전용 API, (테스트 및 개발 편의 용도로 사용)")
 @RestController
 @RequestMapping(path = "/api/v1/dev/items", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
