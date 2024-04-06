@@ -97,4 +97,13 @@ public class ItemService {
                 .map(MyItemResponse::from)
                 .toList();
     }
+
+    public Item findItemByIdAndUid(Long id, Long uid) {
+        return itemRepository.findByIdAndUid(id, uid)
+                .orElseThrow(() -> new NotFoundException(ErrorType.NOT_FOUND_ITEM_ERROR));
+    }
+
+    public void deleteById(Long id) {
+        itemRepository.deleteById(id);
+    }
 }

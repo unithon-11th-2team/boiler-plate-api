@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ItemCommentRepository extends JpaRepository<ItemComment, Long> {
     Long countByItemId(Long itemId);
+
+    void deleteAllByItemId(Long id);
 }
