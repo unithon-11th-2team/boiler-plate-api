@@ -2,6 +2,7 @@ package com.core.api.client;
 
 import com.core.api.config.kakao.KakaoConfig;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.BigDecimal;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AddressClient {
@@ -22,7 +24,7 @@ public class AddressClient {
      * -H "Authorization: KakaoAK ${REST_API_KEY}"
      */
     public KakaoApiResponse search(BigDecimal latitude, BigDecimal longitude) {
-        System.out.println("token " + kakaoConfig.getToken());
+        log.info("kakao token " + kakaoConfig.getToken());
 
         // HTTP 요청 헤더 설정
         HttpHeaders headers = new HttpHeaders();
