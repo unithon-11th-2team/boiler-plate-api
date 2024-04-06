@@ -81,7 +81,7 @@ public class ItemService {
         return new ItemSaveResponseDto(newItem);
     }
 
-    public List<ItemSaveResponseDto> itemList(BigDecimal latitude, BigDecimal longitude) {
+    public List<ItemSaveResponseDto> itemList(Long id, BigDecimal latitude, BigDecimal longitude) {
         List<Item> allItems = itemRepository.findAll();
         double lat = latitude.doubleValue();
         double lon = longitude.doubleValue();
@@ -89,6 +89,7 @@ public class ItemService {
         return allItems.stream()
                 .filter(item -> GeoUtils.calculateDistance(lat, lon, item.getLatitude().doubleValue(), item.getLongitude().doubleValue()) <= ADDRESS_RANGE)
                 .map(ItemSaveResponseDto::new)
+                .peek(itemSaveResponseDto -> itemSaveResponseDto.setIsMine(itemSaveResponseDto.getUid().equals(id)))
                 .toList();
     }
 

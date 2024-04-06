@@ -62,7 +62,7 @@ public class ItemController {
             BigDecimal latitude,
             BigDecimal longitude
     ) {
-        var response = itemService.itemList(latitude, longitude);
+        var response = itemService.itemList(user.getId(), latitude, longitude);
         return ResponseDto.ok(response);
     }
 

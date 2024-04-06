@@ -17,6 +17,7 @@ public class ItemSaveResponseDto {
     private BigDecimal longitude;
     private String address;
     private ItemType type;
+    private Boolean isMine = false;
 
     public ItemSaveResponseDto(Item newItem) {
         this.id = newItem.getId();
