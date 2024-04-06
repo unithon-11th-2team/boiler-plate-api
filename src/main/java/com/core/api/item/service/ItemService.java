@@ -8,17 +8,16 @@ import com.core.api.error.ErrorType;
 import com.core.api.error.NotFoundException;
 import com.core.api.item.dto.request.CommentSaveDto;
 import com.core.api.item.dto.request.ItemSaveDto;
-import com.core.api.item.dto.response.CommentSaveResponseDto;
-import com.core.api.item.dto.response.ItemSaveResponseDto;
-import com.core.api.item.dto.response.MyItemResponse;
-import com.core.api.item.entity.Item;
-import com.core.api.item.entity.ItemComment;
-import com.core.api.item.entity.ItemLike;
+import com.core.api.item.dto.response.*;
+import com.core.api.item.entity.*;
+import com.core.api.item.repository.ItemCommentLikeRepository;
 import com.core.api.item.repository.ItemCommentRepository;
 import com.core.api.item.repository.ItemLikeRepository;
 import com.core.api.item.repository.ItemRepository;
+import com.core.api.user.entity.QUser;
 import com.core.api.user.entity.User;
 import com.core.api.user.repository.UserRepository;
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.transaction.Transactional;
@@ -28,8 +27,11 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static com.core.api.item.entity.QItem.item;
 import static com.core.api.item.entity.QItemComment.itemComment;
+import static com.core.api.item.entity.QItemCommentLike.itemCommentLike;
 import static com.core.api.item.entity.QItemLike.itemLike;
+import static com.core.api.user.entity.QUser.user;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +42,7 @@ public class ItemService {
     private final JPQLQueryFactory queryFactory;
     private final ItemCommentRepository itemCommentRepository;
     private final ItemLikeRepository itemLikeRepository;
+    private final ItemCommentLikeRepository itemCommentLikeRepository;
     private final JPAQueryFactory jpaQueryFactory;
 
 
@@ -105,5 +108,51 @@ public class ItemService {
 
     public void deleteById(Long id) {
         itemRepository.deleteById(id);
+    }
+
+    public ItemDetailResponseDto itemDetail(Long uId, Long itemId) {
+
+        Item item = jpaQueryFactory.select(QItem.item)
+                .from(QItem.item)
+                .where(QItem.item.id.eq(itemId))
+                .fetchFirst();
+
+        List<Tuple> itemContentList = jpaQueryFactory.select(itemComment, user)
+                .from(itemComment)
+                .leftJoin(itemComment).on(itemComment.uId.eq(user.id))
+                .where(itemComment.itemId.eq(itemId))
+                .fetch();
+
+        List<Tuple> itemLikeList = jpaQueryFactory.select(itemLike, user)
+                .from(itemLike)
+                .leftJoin(itemLike).on(itemLike.uId.eq(user.id))
+                .where(itemLike.itemId.eq(itemId))
+                .fetch();
+
+        ItemDetailResponseDto itemDetailResponseDto = new ItemDetailResponseDto();
+
+
+        return null;
+    }
+
+    public Integer itemCommentLike(Long id, Long itemCommentId) {
+        itemCommentLikeRepository.save(new ItemCommentLike(id, itemCommentId));
+
+        long count = jpaQueryFactory.selectFrom(itemCommentLike)
+                .where(itemCommentLike.itemCommentId.eq(itemCommentId))
+                .fetchCount();
+        return count > 0 ? (int) count : 0;
+    }
+
+    @Transactional
+    public Integer itemCommentLikeCancel(Long id, Long itemCommentId) {
+        queryFactory.delete(itemCommentLike)
+                .where(itemCommentLike.uId.eq(id).and(itemCommentLike.itemCommentId.eq(itemCommentId)))
+                .execute();
+
+        long count = jpaQueryFactory.selectFrom(itemCommentLike)
+                .where(itemCommentLike.itemCommentId.eq(itemCommentId))
+                .fetchCount();
+        return count > 0 ? (int) count : 0;
     }
 }

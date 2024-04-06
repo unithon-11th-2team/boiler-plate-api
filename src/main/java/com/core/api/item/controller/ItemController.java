@@ -74,4 +74,16 @@ public class ItemController {
         itemFacade.delete(user, id);
         return ResponseDto.noContent();
     }
+    @Operation(summary = "목탁 상세 조회")
+    @GetMapping("/item-detail")
+    public ResponseEntity<ResponseDto<Object>> itemDetail(
+            AuthUser user,
+            Long itemId
+    ) {
+        var response = itemService.itemDetail(user.getId(), itemId);
+        return ResponseDto.ok(response);
+    }
+
+
+
 }

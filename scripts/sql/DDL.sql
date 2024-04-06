@@ -50,3 +50,12 @@ create table user
 CREATE UNIQUE INDEX uidx__nickname ON user (nickname);
 CREATE UNIQUE INDEX uidx__token ON user (token);
 CREATE UNIQUE INDEX uidx__device_id ON user (device_id);
+
+create table item_comment_like
+(
+    id           bigint auto_increment
+        primary key,
+    item_comment_id bigint null,
+    uid          bigint null
+);
+CREATE UNIQUE INDEX uidx__item_id_uid ON item_comment_like (item_comment_id, uid);
