@@ -4,6 +4,7 @@ import com.core.api.item.entity.Item;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -14,6 +15,7 @@ public class ItemDetailResponseDto {
     private BigDecimal longitude;
     private String address;
     private List<ItemDetailCommentDto> commentList;
+    private LocalDateTime createdAt;
 
     public ItemDetailResponseDto(Item item, List<ItemDetailCommentDto> itemCommentList) {
         this.ItemId = item.getId();
@@ -22,5 +24,6 @@ public class ItemDetailResponseDto {
         this.longitude = item.getLongitude();
         this.address = item.getAddress();
         this.commentList = itemCommentList;
+        this.createdAt = item.getCreatedAt();
     }
 }
