@@ -28,4 +28,9 @@ public class ItemLike {
 
     @Column(name = "uid")
     private Long uId;
+
+    public ItemLike(Long uId, Long itemId) {
+        this.itemId = itemId;
+        this.uId = uId;
+    }
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "목탁 댓글 관리")
 @RestController
-@RequestMapping(path = "/api/v1/item-comments", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/v1/item-comment", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class ItemCommentController {
     private final ItemService itemService;
@@ -39,7 +39,7 @@ public class ItemCommentController {
             AuthUser user,
             Long commentId
     ) {
-        itemService.itemCommentDelete(commentId);
+        itemService.itemCommentDelete(commentId, user.getId());
         return ResponseDto.noContent();
     }
 }

@@ -13,16 +13,23 @@ import com.core.api.item.dto.response.ItemSaveResponseDto;
 import com.core.api.item.dto.response.MyItemResponse;
 import com.core.api.item.entity.Item;
 import com.core.api.item.entity.ItemComment;
+import com.core.api.item.entity.ItemLike;
 import com.core.api.item.repository.ItemCommentRepository;
+import com.core.api.item.repository.ItemLikeRepository;
 import com.core.api.item.repository.ItemRepository;
 import com.core.api.user.entity.User;
 import com.core.api.user.repository.UserRepository;
 import com.querydsl.jpa.JPQLQueryFactory;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import static com.core.api.item.entity.QItemComment.itemComment;
+import static com.core.api.item.entity.QItemLike.itemLike;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +39,9 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final JPQLQueryFactory queryFactory;
     private final ItemCommentRepository itemCommentRepository;
+    private final ItemLikeRepository itemLikeRepository;
+    private final JPAQueryFactory jpaQueryFactory;
+
 
     public ItemSaveResponseDto itemSave(AuthUser user, ItemSaveDto itemSaveDto) {
         String address = addressClient.search(itemSaveDto.getLatitude(), itemSaveDto.getLongitude())
@@ -63,8 +73,22 @@ public class ItemService {
         return new CommentSaveResponseDto(user, itemComment);
     }
 
-    public void itemCommentDelete(Long id) {
-        itemCommentRepository.deleteById(id);
+    @Transactional
+    public void itemCommentDelete(Long id, Long userId) {
+        jpaQueryFactory.delete(itemComment)
+                .where(itemComment.itemId.eq(id).and(itemComment.uId.eq(userId)))
+                .execute();
+    }
+
+    public void itemLike(Long uId, Long itemId) {
+        itemLikeRepository.save(new ItemLike(uId, itemId));
+    }
+
+    @Transactional
+    public void itemLikeCancel(Long uId, Long itemId) {
+        queryFactory.delete(itemLike)
+                .where(itemLike.uId.eq(uId).and(itemLike.itemId.eq(itemId)))
+                .execute();
     }
 
     public List<MyItemResponse> getAllMyItems(AuthUser user) {

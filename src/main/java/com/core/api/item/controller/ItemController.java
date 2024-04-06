@@ -2,7 +2,9 @@ package com.core.api.item.controller;
 
 import com.core.api.auth.AuthUser;
 import com.core.api.common.dto.ResponseDto;
+import com.core.api.item.dto.request.CommentSaveDto;
 import com.core.api.item.dto.request.ItemSaveDto;
+import com.core.api.item.dto.response.CommentSaveResponseDto;
 import com.core.api.item.dto.response.ItemSaveResponseDto;
 import com.core.api.item.dto.response.MyItemResponse;
 import com.core.api.item.service.ItemService;
@@ -11,11 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -37,7 +35,7 @@ public class ItemController {
         return ResponseDto.created(response);
     }
 
-    @Operation(summary = "특정 범위안에 있는 목탁 조회")
+    @Operation(summary = "특정 범위안에 있는 목탁 조회 100미터")
     @GetMapping
     public ResponseEntity<ResponseDto<List<ItemSaveResponseDto>>> itemList(
             AuthUser user,
@@ -57,4 +55,7 @@ public class ItemController {
         var response = itemService.getAllMyItems(user);
         return ResponseDto.ok(response);
     }
+
+
+
 }
