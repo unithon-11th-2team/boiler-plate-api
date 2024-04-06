@@ -41,6 +41,9 @@ public class ItemController {
      *  "type": "TYPE1"
      * }
      * ```
+     *
+     * *type**
+     * (나락)TYPE1 ~ TYPE5(극락)
      */
     @Operation(summary = "목탁 생성")
     @PostMapping
