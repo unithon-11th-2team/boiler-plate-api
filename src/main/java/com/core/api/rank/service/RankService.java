@@ -1,11 +1,9 @@
 package com.core.api.rank.service;
 
-import com.core.api.item.entity.Item;
 import com.core.api.item.entity.ItemType;
 import com.core.api.rank.dto.RankDto;
 import com.core.api.rank.entity.RankAddress;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static com.core.api.item.entity.QItem.item;
 import static com.core.api.rank.entity.QRankAddress.rankAddress;
 
 @Service
@@ -23,11 +20,9 @@ public class RankService {
 
     public List<RankDto> getRanks(String type) {
         List<RankAddress> rankAddresses = queryFactory.selectFrom(rankAddress)
-                .where(
-                        typeConverters(type)
-                )
+                .where(typeConverters(type))
                 .orderBy(rankAddress.type.asc())
-                .limit(5)
+                .limit(10)
                 .fetch();
 
         return IntStream.range(0, rankAddresses.size())
@@ -44,6 +39,7 @@ public class RankService {
                 })
                 .toList();
     }
+
     private BooleanExpression typeConverters(String type) {
         if (!type.equals("paradise")) {
             return rankAddress.type.eq(ItemType.TYPE1).or(rankAddress.type.eq(ItemType.TYPE2)).or(rankAddress.type.eq(ItemType.TYPE3));

@@ -23,15 +23,15 @@ import java.util.List;
 public class RankController {
     private final RankService rankService;
 
-    /*
-    * type : paradise, hell
-    * */
-    @Operation(summary = "극락 랭킹 조회")
-    @GetMapping()
+    /**
+     * - type : paradise, hell
+     */
+    @Operation(summary = "극락 및 나락 지역 랭킹 조회")
+    @GetMapping("/address")
     public ResponseEntity<ResponseDto<List<RankDto>>> getRanks(
             AuthUser user,
             @RequestParam(value = "type", required = false, defaultValue = "paradise") String type
     ) {
-        return ResponseDto.created(rankService.getRanks(type));
+        return ResponseDto.ok(rankService.getRanks(type));
     }
 }
