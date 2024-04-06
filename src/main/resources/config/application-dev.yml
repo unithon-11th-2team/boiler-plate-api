@@ -10,3 +10,17 @@ spring:
 
 kakao:
   token:
+
+# AWS Setting
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: ap-northeast-2
+    credentials:
+      access-key:
+      secret-key:
+    s3:
+      bucket: core-image-bucket
+      url: https://core-image-bucket.s3.ap-northeast-2.amazonaws.com

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 @RequiredArgsConstructor
 public enum ErrorType {
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "예기치 못한 에러가 발생했습니다."),
+    INVALID_REQUEST_ERROR(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
 
     /**
      * user
