@@ -4,6 +4,7 @@ import com.core.api.auth.AuthUser;
 import com.core.api.common.dto.ResponseDto;
 import com.core.api.item.dto.request.ItemSaveDto;
 import com.core.api.item.dto.response.ItemSaveResponseDto;
+import com.core.api.item.dto.response.MyItemResponse;
 import com.core.api.item.service.ItemService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -44,6 +45,16 @@ public class ItemController {
             BigDecimal longitude
     ) {
         var response = itemService.itemList(latitude, longitude);
+        return ResponseDto.ok(response);
+    }
+
+    /**
+     * 내가 생성한 전체 아이템 정보를 제공한다
+     */
+    @Operation(summary = "내가 생성한 목탁 정보 조회")
+    @GetMapping("/my-items")
+    public ResponseEntity<ResponseDto<List<MyItemResponse>>> getAllMyItems(AuthUser user) {
+        var response = itemService.getAllMyItems(user);
         return ResponseDto.ok(response);
     }
 }

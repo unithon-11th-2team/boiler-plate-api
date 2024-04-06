@@ -10,6 +10,7 @@ import com.core.api.item.dto.request.CommentSaveDto;
 import com.core.api.item.dto.request.ItemSaveDto;
 import com.core.api.item.dto.response.CommentSaveResponseDto;
 import com.core.api.item.dto.response.ItemSaveResponseDto;
+import com.core.api.item.dto.response.MyItemResponse;
 import com.core.api.item.entity.Item;
 import com.core.api.item.entity.ItemComment;
 import com.core.api.item.repository.ItemCommentRepository;
@@ -36,7 +37,7 @@ public class ItemService {
         String address = addressClient.search(itemSaveDto.getLatitude(), itemSaveDto.getLongitude())
                 .getDocuments().stream().findFirst()
                 .get().getRegion2depthName();
-        
+
         Item item = new Item(user.getId(), itemSaveDto, address);
         var newItem = itemRepository.save(item);
         return new ItemSaveResponseDto(newItem);
@@ -64,5 +65,12 @@ public class ItemService {
 
     public void itemCommentDelete(Long id) {
         itemCommentRepository.deleteById(id);
+    }
+
+    public List<MyItemResponse> getAllMyItems(AuthUser user) {
+        return itemRepository.findAllByUid(user.getId())
+                .stream()
+                .map(MyItemResponse::from)
+                .toList();
     }
 }

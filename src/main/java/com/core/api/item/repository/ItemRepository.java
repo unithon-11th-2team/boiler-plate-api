@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findAllByTypeIn(List<ItemType> type);
+
+    List<Item> findAllByUid(Long uid);
 }
