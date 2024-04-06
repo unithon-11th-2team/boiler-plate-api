@@ -156,7 +156,9 @@ public class ItemService {
                 .groupBy(itemComment.id, user.id)
                 .fetch();
 
-        return new ItemDetailResponseDto(item, itemCommentList);
+        Long likeCounts = itemLikeRepository.countByItemId(item.getId());
+
+        return new ItemDetailResponseDto(item, itemCommentList, likeCounts);
     }
 
     public Integer itemCommentLike(Long id, Long itemCommentId) {

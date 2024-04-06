@@ -16,8 +16,13 @@ public class ItemDetailResponseDto {
     private String address;
     private List<ItemDetailCommentDto> commentList;
     private LocalDateTime createdAt;
+    private Long likeCounts;
 
-    public ItemDetailResponseDto(Item item, List<ItemDetailCommentDto> itemCommentList) {
+    public ItemDetailResponseDto(
+            Item item,
+            List<ItemDetailCommentDto> itemCommentList,
+            Long likeCounts
+    ) {
         this.ItemId = item.getId();
         this.message = item.getMessage();
         this.latitude = item.getLatitude();
@@ -25,5 +30,6 @@ public class ItemDetailResponseDto {
         this.address = item.getAddress();
         this.commentList = itemCommentList;
         this.createdAt = item.getCreatedAt();
+        this.likeCounts = likeCounts;
     }
 }
