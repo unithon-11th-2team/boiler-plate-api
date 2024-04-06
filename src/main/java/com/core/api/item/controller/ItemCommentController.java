@@ -29,8 +29,8 @@ public class ItemCommentController {
             AuthUser user,
             @RequestBody CommentSaveDto commentSaveDto
     ) {
-        var request = itemService.itemComment(user.getId(), commentSaveDto);
-        return ResponseDto.created(request);
+        var response = itemService.itemComment(user.getId(), commentSaveDto);
+        return ResponseDto.created(response);
     }
 
     @Operation(summary = "목탁 댓글 삭제")

@@ -32,8 +32,8 @@ public class ItemController {
             AuthUser user,
             @RequestBody ItemSaveDto itemSaveDto
     ) {
-        var request = itemService.itemSave(user, itemSaveDto);
-        return ResponseDto.created(request);
+        var response = itemService.itemSave(user, itemSaveDto);
+        return ResponseDto.created(response);
     }
 
     @Operation(summary = "특정 범위안에 있는 목탁 조회")
@@ -43,7 +43,7 @@ public class ItemController {
             BigDecimal latitude,
             BigDecimal longitude
     ) {
-        var request = itemService.itemList(latitude, longitude);
-        return ResponseDto.ok(request);
+        var response = itemService.itemList(latitude, longitude);
+        return ResponseDto.ok(response);
     }
 }
