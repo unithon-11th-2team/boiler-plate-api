@@ -55,7 +55,7 @@ public class ItemService {
     /**
      * 해당 길이를 통해 위치 정보 범위 변경
      */
-    public final static int ADDRESS_RANGE = 5000;
+    public final static int ADDRESS_RANGE = 50000000;
 
     @Transactional
     public ItemSaveResponseDto itemSave(AuthUser user, ItemSaveDto itemSaveDto) {
